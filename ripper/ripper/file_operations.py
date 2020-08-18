@@ -1,9 +1,8 @@
 
 # Python site-package imports
 import csv
-from ssl import SSLContext
 
-def csv_to_list(file: str, delimiter=",": str) -> list:
+def csv_to_list(file: str, delimiter=",") -> list:
 	""" Read a csv into a 2D list (list of lists)
 
 		:param file: 		Filename reference
@@ -17,7 +16,7 @@ def csv_to_list(file: str, delimiter=",": str) -> list:
 		contents = [row for row in reader]
 	return contents
 
-def write_csv(content: list, file: str, delimiter=",": str) -> None:
+def write_csv(content: list, file: str, delimiter=",") -> None:
 	"""	Write content to a CSV *or TSV or anything based on the input delimiter
 
 		:param content: 	List of content (rows)

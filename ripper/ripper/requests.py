@@ -5,8 +5,13 @@ from aiohttp import ClientSession, ClientResponse
 from fake_headers import Headers
 from ssl import SSLContext
 
+from typing import Optional
 
-def get_headers(browser="chrome": str, os="win": str) -> dict:
+READ = "read"
+TEXT = "text"
+
+
+def get_headers(browser="chrome", os="win") -> dict:
 	""" Get fake headers for use in making requests.
 		*Note* This requires the installation of brolipy
 
@@ -22,6 +27,14 @@ def get_headers(browser="chrome": str, os="win": str) -> dict:
 	).generate()
 
 async def fetch(url: str, session: ClientSession, ssl_context: SSLContext) -> ClientResponse:
+	""" Make an asynchronous HTTP GET request using aiohttp
+	"""
 	response = await session.get(url)
 	response.raise_for_status()
 	return response
+
+async def head(url, session, ssl_context):
+	response = await session.head(url)
+	response.raise_for_status()
+	return response
+
